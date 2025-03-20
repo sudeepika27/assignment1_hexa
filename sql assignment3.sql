@@ -159,19 +159,24 @@ select account_id,balance,interest_rate,(balance*interest_rate/100)
 from accounts
 where account_type ='savings'
 
---11
-11. Write a SQL query to Identify accounts where the balance is less than a specified
-overdraft limit.
+    
 
+--11
+11.Write a SQL query to Identify accounts where the balance is less than a specified
+overdraft limit.
 select account_id ,balance
 from accounts
 where balance < 1000
 
+    
+
 --12
-12. Write a SQL query to Find customers not living in a specific city.
+12.Write a SQL query to Find customers not living in a specific city.
 select first_name,adetails
 from customers
 where adetails <> 'chennai' 
+
+    
 
 --TASK 3
 
