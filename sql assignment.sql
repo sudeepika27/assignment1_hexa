@@ -31,7 +31,27 @@ create table inventory(
 inventoryid int constraint pk_iid primary key,
 productid int constraint fk_iid foreign key references products(productid),
 quantityinstock int,
-laststockupdate datetime)-- TABLE 1insert into customers values(1,'abhi','a','abhi@gmail.com',9876543217,'andhra'),(2,'bhavya','b','bhavya@gmail.com',9876543216,'andhra'),(3,'chitra','c','chitra@gmail.com',9876543215,'andhra'),(4,'deepa','d','deepa@gmail.com',9876543214,'andhra'),(5,'eswari','e','eswari@gmail.com',9876543213,'andhra'),(6,'fatima','f','fatima@gmail.com',9876543212,'andhra'),(7,'ganesh','g','ganesh@gmail.com',9876543211,'andhra'),(8,'hari','h','hari@gmail.com',9876543218,'andhra'),(9,'ian','i','ian@gmail.com',9876543219,'andhra'),(10,'james','j','james@gmail.com',9876543277,'andhra')-- TABLE 2
+laststockupdate datetime)
+
+
+
+ 
+ 
+ --- TABLE 1
+insert into customers values(1,'abhi','a','abhi@gmail.com',9876543217,'andhra'),
+(2,'bhavya','b','bhavya@gmail.com',9876543216,'andhra'),
+(3,'chitra','c','chitra@gmail.com',9876543215,'andhra'),
+(4,'deepa','d','deepa@gmail.com',9876543214,'andhra'),
+(5,'eswari','e','eswari@gmail.com',9876543213,'andhra'),
+(6,'fatima','f','fatima@gmail.com',9876543212,'andhra'),
+(7,'ganesh','g','ganesh@gmail.com',9876543211,'andhra'),
+(8,'hari','h','hari@gmail.com',9876543218,'andhra'),
+(9,'ian','i','ian@gmail.com',9876543219,'andhra'),
+(10,'james','j','james@gmail.com',9876543277,'andhra')
+
+
+ 
+ -- TABLE 2
 insert into products values(1, 'Mouse', 'designed with adjustable pin', 799.00),
 (2, 'Keyboard', 'RGB backlit with blue switches', 1999.00),
 (3, 'Charger', 'Fast charging adapter', 599.00),
@@ -42,7 +62,10 @@ insert into products values(1, 'Mouse', 'designed with adjustable pin', 799.00),
 (8, 'Earbuds', 'Bluetooth 5.0 with touch controls', 1799.00),
 (9, 'PowerBank', '10000mAh with fast charging support', 999.00),
 (10, 'Laptop', '5-fan setup with adjustable angles', 88899.00)
--- TABLE 3
+
+ 
+ 
+ -- TABLE 3
 insert into orders values(1, 1, '2025-03-01', 2599.00),
 (2, 2, '2025-03-02', 4999.00),
 (3, 3, '2025-03-03', 1499.00),
@@ -82,8 +105,7 @@ insert into inventory values
 (10, 10, 10, '2025-03-01')
 
 --1
-
-select firstname,email from customers
+ select firstname,email from customers
 
 --2
 select o.orderid, o.orderdate, c.firstname,c.lastname
@@ -91,34 +113,28 @@ from orders o
 join customers c
 on o.customerid = c.customerID
 
---3
-
-insert into Customers (customerID,firstname, email,address)values (11,'kelly','doe',kelly@gmail.com,9876543211,'nextchennai')
+--3 
+ insert into Customers (customerID,firstname, email,address)values (11,'kelly','doe',kelly@gmail.com,9876543211,'nextchennai')
 
 --4
-
 update products
 set price = price *1.10
 
 
 --5
-
 delete from orderdetails where orderid = 3
 delete from orders where orderid = 3
 
 --6
-
 insert into orders(orderid,customerid,orderdate,totalamount)values(11,11,'2025-03-14',6599)
 
-
 --7
-
 update customers
 set email = 'abhinay@gmail.com',
 address ='kerala'
 where customerID = 1
 
---8---------------------------------------------------
+--8
  update orders
  set totalamount = (select sum(p.price * od.quantity)
  from orderdetails od
@@ -128,22 +144,17 @@ where customerID = 1
  )
 
 --9
-
-delete from orderdetails
+ delete from orderdetails
 where orderid in (select orderid from orders
 where customerid = 3)
 
 delete from orders
 where customerid =3
 
-
-
 --10
-
 insert into products values (11,'geaser','portable',9000.0)
 
 --11
-
 alter table orders
 add status varchar(30) default 'pending'
 update orders
@@ -151,7 +162,6 @@ set status = 'shipped'
 where orderid=1
 
 --12
-
 alter table customers
 add order_count int
 
@@ -169,9 +179,7 @@ from orders o
 join customers c
 on c.customerID = o.customerid
 
-
 --2
-
 select p.productname,sum(p.price*o.quantity) as totalrevenue
 from products p
 join orderdetails o
@@ -180,15 +188,12 @@ group by p.productname
 order by totalrevenue desc
 
 --3
-
 select c.*,o.orderid
 from Customers c
 left join orders o 
 on o.customerid = c.customerID
 
 --4
-
-
 select top(1) sum(o.quantity) as popular,p.productname
 from orderdetails o
 join products p
@@ -203,7 +208,6 @@ join products p
 on p.productID = o.orderid
 
 --6
-
 select avg(o.totalamount) as avgamount, c.firstname
 from customers c
 left join orders o 
@@ -211,7 +215,6 @@ on c.customerid = o.customerid
 group by c.firstname
 
 --7
-
 select top 1 o.orderid, c.customerid, c.firstname, c.lastname, c.email, c.phone, c.address,  
        sum(p.price * od.quantity) as total_revenue  
 from orders o  
@@ -223,7 +226,6 @@ order by total_revenue desc;
 
 
 --8
-
 select p.productname, count(o.orderid) as count
 from products p
 join orderdetails o
@@ -231,7 +233,6 @@ on p.productID = o.productid
 group by p.productname
 
 --9
-
 select c.firstname
 from Customers c
 join orders o
@@ -270,7 +271,6 @@ where c.customerID not in (select customerid from orders)
 
 
  --4
-
 alter table products
 add category varchar(40)
 
@@ -299,10 +299,7 @@ from orders
  where customerid = 1
 group by customerid
 
-
-
 --6
-
 select c.firstname , (select count(orderid) from orders where  customerid = c.customerid )
 from customers c
 where (select count(orderid)
@@ -311,8 +308,6 @@ where  o.customerid = c.customerid) = (select max(count(o.orderid))
 from orders
 group by customerid
 )
-
-
 
 
 --7
@@ -337,7 +332,6 @@ order by total_spent desc;
 
 
 --9
-
 select sum(totalamount)/count(orderid) as average
 from orders
 
