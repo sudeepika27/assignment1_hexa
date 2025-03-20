@@ -125,7 +125,25 @@ FROM customers
 ORDER BY adetails;
 
 --7
-. Write a SQL query to Get the account balance for a specific account.select balance ,account_idfrom accountswhere account_id = 101--88. Write a SQL query to List all current accounts with a balance greater than $1,000.select account_id,balancefrom accountswhere balance > 1000--99. Write a SQL query to Retrieve all transactions for a specific account.select * from transactionswhere account_id = 102--1010. Write a SQL query to Calculate the interest accrued on savings accounts based on a
+. Write a SQL query to Get the account balance for a specific account.
+select balance ,account_id
+from accounts
+where account_id = 101
+
+--8
+8. Write a SQL query to List all current accounts with a balance greater than $1,000.
+select account_id,balance
+from accounts
+where balance > 1000
+
+--9
+9. Write a SQL query to Retrieve all transactions for a specific account.
+select * from transactions
+where 
+account_id = 102
+
+--10
+10. Write a SQL query to Calculate the interest accrued on savings accounts based on a
 given interest rate.
 
 alter table accounts
@@ -143,7 +161,29 @@ where account_type ='savings'
 
 --11
 11. Write a SQL query to Identify accounts where the balance is less than a specified
-overdraft limit.select account_id ,balancefrom accountswhere balance < 1000--1212. Write a SQL query to Find customers not living in a specific city.select first_name,adetailsfrom customerswhere adetails <> 'chennai' --TASK 3--11. Write a SQL query to Find the average account balance for all customers. select customer_id, avg(balance) as averagefrom accountsgroup by customer_id--22. Write a SQL query to Retrieve the top 10 highest account balances.
+overdraft limit.
+
+select account_id ,balance
+from accounts
+where balance < 1000
+
+--12
+12. Write a SQL query to Find customers not living in a specific city.
+select first_name,adetails
+from customers
+where adetails <> 'chennai' 
+
+--TASK 3
+
+--1
+1. Write a SQL query to Find the average account balance for all customers. 
+select customer_id, avg(balance) as average
+from accounts
+group by customer_id
+
+
+--2
+2. Write a SQL query to Retrieve the top 10 highest account balances.
 select top 10 balance
 from accounts
 order by balance desc
