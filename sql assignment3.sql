@@ -1,5 +1,5 @@
-create database BankingSystem
-use bankingsystem
+create HMBank
+use HMBank
 
 -- customers table
 create table customers (
